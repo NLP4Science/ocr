@@ -69,7 +69,7 @@ for i in pg_*.pdf; do
     echo "[*] normalize ${pref}"
     convert "${pref}.png" -modulate 120,0 "${pref}.ok.png"
     echo "[*] ocr ${pref}"
-    tesseract "${pref}.ok.png" "${pref}" -l "${tlang:=fra}"
+    tesseract "${pref}.ok.png" "${pref}" -l "${tlang:=fra}" --psm 6
 
     if [[ "${spell}" = true || -n "${alang}" ]]; then
         aspell check "${pref}.txt" -l "${alang:=fr}"
