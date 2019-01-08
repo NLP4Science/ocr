@@ -65,7 +65,7 @@ printf "[*] found %s page(s)\n" $(ls pg_*.pdf 2>/dev/null | wc -l)
 for i in pg_*.pdf; do
     pref=$(basename ${i} .pdf)
     echo "[*] convert ${pref}"
-    gs -r300 -dINTERPOLATE -q -dNOPAUSE -sDEVICE=png16m -sOutputFile="${pref}.png" ${i} -c quit
+    gs -r300 -dFILTERVECTOR -dFILTERIMAGE -dINTERPOLATE -q -dNOPAUSE -sDEVICE=png16m -sOutputFile="${pref}.png" ${i} -c quit
     echo "[*] normalize ${pref}"
     convert "${pref}.png" -modulate 120,0 "${pref}.ok.png"
     echo "[*] ocr ${pref}"
